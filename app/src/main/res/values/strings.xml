@@ -1,4 +1,9 @@
 <resources>
-    <string name="app_name">LocateTask</string>
-    <string name="title_activity_maps">MapsActivity</string>
+    <string name="app_name" translatable="false">LocateTask</string>
+    <string name="title_activity_maps" translatable="false">MapsActivity</string>
+    <string name="add" translatable="false">ADD</string>
+    <string name="delete">DELETE</string>
+    <string name="settings">SETTINGS</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>
