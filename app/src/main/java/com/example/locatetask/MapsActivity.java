@@ -4,6 +4,7 @@ import androidx.annotation.NonNull;
 import androidx.core.app.ActivityCompat;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentActivity;
+import androidx.fragment.app.FragmentManager;
 
 import android.Manifest;
 import android.content.pm.PackageManager;
@@ -33,6 +34,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     FusedLocationProviderClient FusedLocationProviderClient;
     BottomNavigationView navigationView;
     Boolean newLocation= false;
+    Fragment fragment= null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,45 +51,16 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         mapFragment.getMapAsync(this);
         //MAPS......
 
+        //navigation object-start
 
-        //NAVIGATION
-        navigationView = findViewById(R.id.botton_navigation);
-        navigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
-            @Override
-            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-                Fragment fragment= null;
-                switch (item.getItemId()){
-                    case R.id.nav_add:
+        navigation_botton();
+        //navigation object-end
 
-
-                        break;
-                    case R.id.nav_delete:
-                        fragment = new DeleteFragment();
-                        callFragment(fragment);
-                        break;
-                    case R.id.nav_settings:
-                        fragment = new SettingsFragment();
-                        callFragment(fragment);
-                        break;
-
-                }
-
-
-                return true;
-            }
-
-            private void callFragment(Fragment fragment) {
-                getSupportFragmentManager().beginTransaction().replace(R.id.body_container,fragment).commit();
-            }
-
-
-        });
-
-        //NAVIGATION
 
     }
 
-    
+
+
 
     @Override
     public void onMapReady(GoogleMap googleMap) {
@@ -114,6 +87,58 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
 
     }
+
+
+    private void navigation_botton() {
+
+        //NAVIGATION
+        navigationView = findViewById(R.id.botton_navigation);
+        navigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
+            @Override
+            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+
+                switch (item.getItemId()){
+                    case R.id.nav_add:
+                        fragment = new AddFragment();
+                        callFragment(fragment);
+                        break;
+                    case R.id.nav_delete:
+                        fragment = new DeleteFragment();
+                        callFragment(fragment);
+                        break;
+                    case R.id.nav_settings:
+                        fragment = new SettingsFragment();
+                        callFragment(fragment);
+                        break;
+
+                }
+
+
+                return true;
+            }
+
+            private void callFragment(Fragment fragment) {
+
+                /*if(getSupportFragmentManager().getBackStackEntryCount() != 0) {
+                    int index = getSupportFragmentManager().getBackStackEntryCount() -1;
+                    String tag = getSupportFragmentManager().getBackStackEntryAt(index).getName();
+                    Fragment lastFragment = getSupportFragmentManager().findFragmentByTag(tag);
+                    getSupportFragmentManager().beginTransaction().remove(lastFragment).commit();
+                    getSupportFragmentManager().popBackStack();
+                    getSupportFragmentManager().executePendingTransactions();
+                }*/
+
+                   getSupportFragmentManager().beginTransaction().add(R.id.body_container, fragment).addToBackStack(null).commit();
+
+            }
+
+
+        });
+
+        //NAVIGATION
+    }
+
+
 
 
 

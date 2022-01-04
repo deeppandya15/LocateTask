@@ -14,6 +14,7 @@
         android:name="com.google.android.gms.maps.SupportMapFragment"
         tools:context=".MapsActivity"/>
 
+
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -26,8 +27,9 @@
         map:itemIconSize="30dp"
         map:labelVisibilityMode="unlabeled"
         map:itemIconTint="@drawable/item_selector"
-        android:id="@+id/botton_navigation"
-        />
+        android:id="@+id/botton_navigation"/>
+
+
 
 
 </RelativeLayout>
