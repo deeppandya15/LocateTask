@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <item name="nav_add" type="id" />
+    <item name="nav_delete" type="id" />
+    <item name="nav_settings" type="id" />
+</resources>
